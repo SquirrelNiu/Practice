@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div id="start">开始闪</div>
+        <div id="end">结束闪</div>
+    </div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 350px;
+            margin: 100px auto
+        }
+
+        ul {
+            list-style: none;
+            overflow: hidden
+        }
+
+        ul li {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            background: rgb(255, 165, 0);
+            float: left;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        #start,
+        #end {
+            width: 330px;
+            border: 1px solid orange;
+            padding: 5px;
+            text-align: center;
+            border-radius: 5px
+        }
+
+        #end {
+            margin-top: 5px;
+        }
+
+        #start:hover,
+        #end:hover {
+            background: orange
+        }
+    </style>
+    <script>
+        var box = document.getElementById("box");
+        var ul = box.getElementsByTagName("ul")[0];
+        var li = ul.getElementsByTagName("li");
+        var start = document.getElementById("start");
+        var end = document.getElementById("end");
+
+        function color() {
+            var r = Math.ceil(Math.random() * 255);
+            var g = Math.ceil(Math.random() * 255);
+            var b = Math.ceil(Math.random() * 255);
+            var rgb = "rgb(" + r + "," + g + "," + b + ")";
+            return rgb;
+        };
+
+        function suiji() {
+            for (var i = 0; i < li.length; i++) {
+                li[i].style.background = "rgb(255,165,0)"
+            }
+            var one = Math.floor(Math.random() * 9);
+            var two = Math.floor(Math.random() * 9);
+            var three = Math.floor(Math.random() * 9);
+            if (one != two && two != three && three != one) {
+                li[one].style.backgroundColor = color();
+                li[two].style.backgroundColor = color();
+                li[three].style.backgroundColor = color();
+            } else {
+                suiji()
+            }
+        }
+        var timer = setInterval(suiji, 2000);
+        clearInterval(timer);
+        start.onclick = function () {
+            clearInterval(timer);
+            timer = setInterval(suiji, 2000);
+        }
+        end.onclick = function () {
+            clearInterval(timer);
+        }
+    </script>
+</body>
+
+</html>
